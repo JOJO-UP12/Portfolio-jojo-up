@@ -1,366 +1,82 @@
-/* Réinitialisation des styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* Styles généraux */
+/* Global */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #ECF0F1; /* Gris clair */
-  color: #2C3E50; /* Texte bleu foncé en mode clair */
-  overflow-x: hidden;
-  transition: background 0.5s, color 0.5s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  line-height: 1.6;
 }
 
-body.dark-mode {
-  background: #2C3E50; /* Bleu foncé en mode sombre */
-  color: #FFFFFF; /* Texte blanc en mode sombre */
-}
-
-/* Conteneur principal */
 .container {
   max-width: 1200px;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Bouton Mode Sombre */
+/* Dark Mode Toggle */
 .mode-toggle {
   position: fixed;
-  bottom: 20px; /* En bas */
-  left: 50%; /* Centré horizontalement */
-  transform: translateX(-50%); /* Ajustement pour un centrage parfait */
-  width: 50px;
-  height: 50px;
-  background: #E67E22; /* Orange vif */
-  border-radius: 50%;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s, transform 0.3s;
+  font-size: 24px;
   z-index: 1000;
 }
 
-.mode-toggle:hover {
-  background: #D35400; /* Orange foncé au survol */
-  transform: translateX(-50%) scale(1.1); /* Ajustement pour le hover */
-}
-
-.mode-icon {
-  font-size: 24px;
-  transition: transform 0.3s;
-  color: #FFFFFF; /* Icône blanche */
-}
-
-/* Casiers de Navigation */
+/* Navigation */
 .casiers {
   display: flex;
   justify-content: center;
   gap: 10px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
-  z-index: 999;
-  overflow-x: auto; /* Permettre le défilement horizontal */
-  scroll-behavior: smooth; /* Défilement fluide */
-  border-radius: 10px;
-  margin-bottom: 20px;
+  z-index: 100;
 }
 
 .casiers button {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
   padding: 10px 20px;
-  color: inherit; /* Couleur du texte adaptée au mode */
-  font-family: 'Poppins', sans-serif;
+  border: none;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s, transform 0.3s;
-  flex-shrink: 0; /* Empêcher les boutons de rétrécir */
-}
-
-.casiers button:hover {
-  background: #E67E22; /* Orange vif */
-  transform: translateY(-5px);
-  color: #FFFFFF; /* Texte blanc au survol */
+  border-radius: 20px;
+  transition: all 0.3s;
 }
 
 .casiers button.active {
-  background: #E67E22; /* Orange vif */
-  color: #FFFFFF; /* Texte blanc pour le bouton actif */
+  background: var(--primary);
+  color: white;
 }
 
 /* Sections */
 section {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-in-out;
-  overflow-y: auto; /* Permet le défilement vertical si le contenu dépasse */
-  padding: 100px 20px; /* Conserve ton padding actuel */
-  text-align: center; /* Conserve ton alignement actuel */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0; /* Masquer par défaut */
-  visibility: hidden; /* Masquer par défaut */
-  transform: translateX(100%); /* Déplacer hors de l'écran par défaut */
+  padding: 80px 0;
+  min-height: 100vh;
+  display: none;
 }
 
-/* Section active */
 section.active {
-  opacity: 1; /* Afficher */
-  visibility: visible; /* Afficher */
-  transform: translateX(0); /* Position normale */
+  display: block;
+  animation: fadeIn 1s;
 }
 
-/* Animation pour les sections précédentes et suivantes */
-section.prev {
-  transform: translateX(-100%); /* Déplacer vers la gauche */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-section.next {
-  transform: translateX(100%); /* Déplacer vers la droite */
-}
-
-/* Titres */
-h1, h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: #2C3E50; /* Bleu foncé */
-}
-
-body.dark-mode h1, body.dark-mode h2 {
-  color: #FFFFFF; /* Texte blanc en mode sombre */
-}
-
+/* Effets Neon */
 .neon-text {
-  color: #E67E22; /* Orange vif */
-  text-shadow: 0 0 10px #E67E22, 0 0 20px #E67E22;
+  color: var(--primary);
+  text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary);
 }
 
-/* Section À Propos */
-.about-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  max-width: 800px; /* Largeur maximale augmentée */
-  margin: 0 auto;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  text-align: center; /* Centrer le texte */
+/* Responsive */
+@media (max-width: 768px) {
+  .casiers {
+    flex-wrap: wrap;
+  }
+  section {
+    padding: 50px 0;
+  }
 }
-
-.about-content img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #E67E22; /* Orange vif */
-}
-
-.about-text {
-  text-align: center; /* Centrer le texte */
-  max-width: 800px; /* Largeur maximale augmentée */
-}
-
-.about-text p {
-  font-size: 18px;
-  line-height: 1.8; /* Espacement des lignes augmenté */
-  margin-bottom: 20px;
-  color: inherit; /* Couleur du texte adaptée au mode */
-}
-
-.about-text ul {
-  list-style: none;
-  padding: 0;
-  text-align: left; /* Aligner la liste à gauche */
-  display: inline-block; /* Centrer la liste */
-}
-
-.about-text ul li {
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-.highlight {
-  color: #E67E22; /* Orange vif */
-  font-weight: bold;
-}
-
-/* Section Portfolio */
-.portfolio-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.portfolio-item {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.portfolio-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.portfolio-item h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #2C3E50; /* Bleu foncé */
-}
-
-body.dark-mode .portfolio-item h3 {
-  color: #FFFFFF; /* Texte blanc en mode sombre */
-}
-
-.portfolio-item p {
-  font-size: 16px;
-  color: inherit; /* Couleur du texte adaptée au mode */
-  margin-bottom: 15px;
-}
-
-.portfolio-item a {
-  text-decoration: none;
-  color: #E67E22; /* Orange vif */
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.portfolio-item a:hover {
-  color: #D35400; /* Orange foncé au survol */
-}
-
-/* Section Réseaux Sociaux */
-.social-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 10px;
-  width: 200px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.card img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
-}
-
-.card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 14px;
-  color: inherit; /* Couleur du texte adaptée au mode */
-}
-
-.card a {
-  text-decoration: none;
-  color: #E67E22; /* Orange vif */
-  font-weight: bold;
-}
-
-/* Section Contact */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px; /* Largeur maximale augmentée */
-  margin: 0 auto;
-}
-
-form input, form textarea {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  color: inherit; /* Couleur du texte adaptée au mode */
-}
-
-form button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: #E67E22; /* Orange vif */
-  color: #FFFFFF;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-form button:hover {
-  background: #D35400; /* Orange foncé au survol */
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  color: inherit; /* Couleur du texte adaptée au mode */
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-/* Effet de lumière qui suit la souris */
-.light-effect {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  animation: lightFade 0.5s ease-out;
-}
-
-@keyframes lightFade {
-  from { opacity: 1; }
-  to { opacity: 0; }
-    }
