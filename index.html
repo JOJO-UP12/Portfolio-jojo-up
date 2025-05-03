@@ -5,46 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JOJO UP</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <style>
-    /* CSS intégré (ou à mettre dans style.css) */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    :root {
-      --primary: #8A2BE2;
-      --secondary: #FF10F0;
-      --bg-light: #f8f9fa;
-      --text-light: #333;
-      --bg-dark: #121212;
-      --text-dark: #f0f0f0;
-      --highlight: #FFCC00;
-    }
-    body {
-      background: var(--bg-light);
-      color: var(--text-light);
-      transition: all 0.5s;
-    }
-    body.dark-mode {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    /* ... (le reste du CSS sera dans la partie dédiée) ... */
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Bouton Dark Mode -->
+  <!-- Dark Mode Toggle -->
   <div class="mode-toggle" id="modeToggle">🌟</div>
 
   <!-- Navigation -->
-  <nav class="casiers">
+  <nav class="casiers container">
     <button data-target="accueil" class="active">Accueil</button>
     <button data-target="apropos">À propos</button>
     <button data-target="portfolio">Portfolio</button>
@@ -52,52 +20,73 @@
     <button data-target="contact">Contact</button>
   </nav>
 
-  <!-- Contenu principal -->
-  <div class="container">
-    <!-- Section Accueil -->
-    <section id="accueil" class="active">
-      <h2>Bienvenue sur la page de <span class="neon-text">ᴊᴏᴊᴏ υρ!!</span></h2>
-      <p>Découvrez mon univers créatif et connectez-vous avec moi !</p>
-      <div class="social-icons">
-        <a href="https://www.tiktok.com/@next_jojo" target="_blank"><img src="tiktok-icon.png" alt="TikTok"></a>
-        <a href="https://www.instagram.com/jojo4ht" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
-        <a href="https://wa.me/qr/SFZBBFSVWNTCB1" target="_blank"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Accueil -->
+    <section id="accueil" class="active animate__animated animate__fadeIn">
+      <div class="section-content">
+        <h2>Bienvenue sur la page de <span class="neon-text">ᴊᴏᴊᴏ υρ!!</span></h2>
+        <p class="lead">Découvrez mon univers créatif et connectez-vous avec moi !</p>
+        <div class="social-icons">
+          <a href="https://www.tiktok.com/@next_jojo" target="_blank"><img src="tiktok-icon.png" alt="TikTok"></a>
+          <a href="https://www.instagram.com/jojo4ht" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+          <a href="https://wa.me/qr/SFZBBFSVWNTCB1" target="_blank"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+        </div>
       </div>
     </section>
 
-    <!-- Autres sections (À propos, Portfolio, etc.) -->
-    <section id="apropos">...</section>
-    <section id="portfolio">...</section>
-    <section id="reseaux">...</section>
-    <section id="contact">...</section>
-  </div>
+    <!-- À Propos -->
+    <section id="apropos" class="animate__animated">
+      <div class="section-content">
+        <h2>À propos</h2>
+        <div class="about-grid">
+          <img src="https://i.postimg.cc/SR10KsSs/IMG-20250223-WA0152.jpg" alt="Photo de ᴊᴏᴊᴏ υρ!!" class="about-img">
+          <div class="about-text">
+            <p>Salut ! Je suis <span class="neon-text">ᴊᴏᴊᴏ υρ!!</span>, un jeune passionné de design et de codage originaire d'<span class="highlight">Haïti</span>.</p>
+            <ul class="about-list">
+              <li>🎨 <span class="highlight">Dessiner et créer des designs</span></li>
+              <li>💻 <span class="highlight">Coder</span></li>
+              <li>🎮 <span class="highlight">Jouer à Free Fire</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="animate__animated">
+      <div class="section-content">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-card animate__animated">
+            <img src="https://i.postimg.cc/50P5mhSD/3f8ab5eda4f2f2c89aa06c5e3edbc3ca-1.jpg" alt="Projet 1">
+            <h3>Design Graphique</h3>
+            <a href="#" class="btn">Voir plus</a>
+          </div>
+          <!-- Ajoutez d'autres cartes ici -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="animate__animated">
+      <div class="section-content">
+        <h2>Contact</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Votre nom" required>
+          <input type="email" placeholder="Votre email" required>
+          <textarea placeholder="Votre message" required></textarea>
+          <button type="submit" class="btn">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer class="container">
     <p>© 2025 ᴊᴏᴊᴏ υρ!! Tous droits réservés.</p>
   </footer>
 
-  <script>
-    // JS intégré (ou à mettre dans script.js)
-    document.addEventListener('DOMContentLoaded', () => {
-      // Dark Mode
-      const modeToggle = document.getElementById('modeToggle');
-      modeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌟';
-      });
-
-      // Navigation
-      document.querySelectorAll('.casiers button').forEach(button => {
-        button.addEventListener('click', () => {
-          const target = button.getAttribute('data-target');
-          document.querySelectorAll('section').forEach(section => {
-            section.classList.remove('active');
-          });
-          document.getElementById(target).classList.add('active');
-        });
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
