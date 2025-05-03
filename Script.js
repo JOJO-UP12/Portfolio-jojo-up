@@ -1,31 +1,33 @@
-// Dark Mode + Navigation
-document.addEventListener('DOMContentLoaded', () => {
-  // Dark Mode
-  const modeToggle = document.getElementById('modeToggle');
-  modeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌟';
-  });
-
-  // Navigation entre sections
-  document.querySelectorAll('.casiers button').forEach(button => {
-    button.addEventListener('click', () => {
-      // Retire la classe active de tous les boutons/sections
-      document.querySelectorAll('.casiers button, section').forEach(el => {
-        el.classList.remove('active');
-      });
-      // Ajoute la classe active au bouton et à la section cible
-      button.classList.add('active');
-      document.getElementById(button.dataset.target).classList.add('active');
-    });
-  });
+// Dark Mode
+const modeToggle = document.getElementById('modeToggle');
+modeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+  modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌟';
 });
 
-// Animation au scroll
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.portfolio-item, .card').forEach(item => {
-    if (item.getBoundingClientRect().top < window.innerHeight - 100) {
-      item.classList.add('animate__animated');
-    }
+// Charger le mode sombre si activé
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark-mode');
+  modeToggle.textContent = '☀️';
+}
+
+// Navigation
+document.querySelectorAll('.casiers button').forEach(button => {
+  button.addEventListener('click', () => {
+    // Désactive toutes les sections
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.remove('active');
+    });
+    
+    // Active la section cible
+    const target = document.getElementById(button.dataset.target);
+    target.classList.add('active');
+    
+    // Met à jour la navigation
+    document.querySelectorAll('.casiers button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    button.classList.add('active');
   });
 });
